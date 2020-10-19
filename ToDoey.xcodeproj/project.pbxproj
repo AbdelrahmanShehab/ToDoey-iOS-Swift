@@ -14,7 +14,6 @@
 		63408A4B251F5F8900605814 /* ToDoey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63408A49251F5F8900605814 /* ToDoey.xcdatamodeld */; };
 		63408A4D251F5F8B00605814 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63408A4C251F5F8B00605814 /* Assets.xcassets */; };
 		63408A50251F5F8B00605814 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63408A4E251F5F8B00605814 /* LaunchScreen.storyboard */; };
-		63D2C80E2522325A005C7E88 /* Data Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D2C80D2522325A005C7E88 /* Data Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		63408A4C251F5F8B00605814 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63408A4F251F5F8B00605814 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63408A51251F5F8B00605814 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		63D2C80D2522325A005C7E88 /* Data Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data Model.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +72,6 @@
 		63D2C80F25223263005C7E88 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				63D2C80D2522325A005C7E88 /* Data Model.swift */,
 				63408A49251F5F8900605814 /* ToDoey.xcdatamodeld */,
 			);
 			path = Models;
@@ -176,7 +173,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				63408A45251F5F8900605814 /* ToDoListViewController.swift in Sources */,
-				63D2C80E2522325A005C7E88 /* Data Model.swift in Sources */,
 				63408A41251F5F8900605814 /* AppDelegate.swift in Sources */,
 				63408A43251F5F8900605814 /* SceneDelegate.swift in Sources */,
 				63408A4B251F5F8900605814 /* ToDoey.xcdatamodeld in Sources */,

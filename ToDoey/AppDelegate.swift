@@ -12,7 +12,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         return true
@@ -44,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
 
-    // MARK: - Core Data Saving support
+    // MARK: - Core Data Saving Support
 
     func saveContext () {
         let context = persistentContainer.viewContext

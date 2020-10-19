@@ -11,26 +11,20 @@ import CoreData
 class ToDoListViewController: UITableViewController {
 
     var toDoItems = [Item]()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-        /// Encode & Decode with Plist
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Item.plist")
-
-        /// Saving Data in User Defaults
+    /// Saving Data in User Defaults
     //let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        /// Decode with Plist
-        loadData()
-
-        /// Saving Data in User Defaults
-//        if let items = defaults.array(forKey: "ToDoListItems") as? [String] {
-//            toDoItems = items
-//        }
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
+            loadData()
     }
 
-    // MARK - Table View Data Source Methods
+    // MARK: - Table View Data Source Methods
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return toDoItems.count
@@ -47,7 +41,7 @@ class ToDoListViewController: UITableViewController {
         return cell
     }
 
-    // MARK - Table View Delegate Methodes
+    // MARK: - Table View Delegate Methodes
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
@@ -58,7 +52,7 @@ class ToDoListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    // MARK - IBOutlets
+    // MARK: - IBOutlets
     @IBAction func addItemPressed(_ sender: UIBarButtonItem) {
 
         var toDoTextItemField = UITextField()
@@ -67,15 +61,15 @@ class ToDoListViewController: UITableViewController {
 
         let action = UIAlertAction(title: "Add Item", style: .default) { (alertAction) in
 
-            let newItem = Item()
+            let newItem = Item(context: self.context)
             newItem.title = toDoTextItemField.text!
-
+            newItem.done = false
             self.toDoItems.append(newItem)
 
             self.saveData()
 
             /// Saving Data in User Defaults
-//            self.defaults.set(self.toDoItems, forKey: "ToDoListItems")
+            //            self.defaults.set(self.toDoItems, forKey: "ToDoListItems")
         }
 
         alert.addTextField { (alerttextField) in
@@ -87,28 +81,23 @@ class ToDoListViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    // MARK - Model Manupulation Methods
-    func loadData() {
-
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-
+    // MARK: - Model Manupulation Methods
+    
+        func loadData() {
+    
+            let request: NSFetchRequest<Item> = Item.fetchRequest()
+            
             do {
-                toDoItems = try decoder.decode([Item].self, from: data)
-            } catch {
-                print("Error Decoding Item Array \(error)")
+                toDoItems = try context.fetch(request)
+            } catch  {
+                print("Error in Fetching data \(error)")
             }
         }
-
-    }
-
+    
     func saveData() {
 
-        let encoder = PropertyListEncoder()
-
         do {
-            let data = try encoder.encode(toDoItems)
-            try data.write(to: dataFilePath!)
+            try context.save()
         } catch {
             print("Error Encoding Item Array \(error)")
         }
